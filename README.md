@@ -1,14 +1,15 @@
-# Code Standards Guide
+# CSS and HTML Guide for Lazy Developers
 
-Guidelines for writing flexible, consistent and maintainable HTML and CSS.
+These guidelines are for writing flexible, consistent and maintainable HTML and CSS as a lazy developer.
 
 ## HTML
 
 ### Syntax
 
-*   Avoid capitalising html tags, including the doctype.
+*   Don't capitalise html tags
+*   use a doctype.
 *   Use double quotes on attributes.
-*   Don’t use a closing slash in self-closing elements.
+*   Don’t use a closing slash for self-closing elements.
 *   Don’t skip any optional closing tags (e.g. `</li>` or `</body>`).
   
 ```html
@@ -26,7 +27,7 @@ Guidelines for writing flexible, consistent and maintainable HTML and CSS.
 
 ### doctype
 
-Use standards mode rendering for more reliably consistent rendering across every browser by using this doctype at the beginning of every HTML page. Keep it lowercase.
+Use standards mode rendering for more consistent rendering across  browsers. Keep it lowercase.
 
 ```html
     <!doctype html>
@@ -34,7 +35,7 @@ Use standards mode rendering for more reliably consistent rendering across every
 
 ### Language attribute
 
-Use a lang attribute on the root html element. This helps speech synthesis tools, for accessibility, to best choose which pronunciations to use, translation tools to choose which rules to use, and so forth.
+Use a lang attribute. This helps speech and language tools choose which rules to use.
 
 ```html
     <html lang="en">
@@ -42,7 +43,7 @@ Use a lang attribute on the root html element. This helps speech synthesis tools
 
 ### IE compatibility mode
 
-If you need support for IE10 and older. 
+Only if you need support for IE10 and older. 
 
 ```html
     <!-- IE10 and below only -->
@@ -51,9 +52,9 @@ If you need support for IE10 and older.
 
 ### Character encoding
 
-Character encoding is used to determine the correct content rendering so that you can use regular characters instead of their HTML equivalent entities, like `—` instead of `&emdash;`. As long as their encoding matches that of the document. 
+Used to determine the correct rendering of characters. Allows you to use `—` instead of `&emdash;` for example.
 
-UTF-8 is the recommended encoding.
+UTF-8 is the recommended.
 
 ```html
     <head>
@@ -66,7 +67,7 @@ UTF-8 is the recommended encoding.
 
 ### CSS and JavaScript includes
 
-There is no need to specify a `type` when you include CSS and JavaScript since `text/css` and `text/javascript` are taken as their defaults.
+No need to specify `type` when you include CSS or JavaScript. `text/css` and `text/javascript` are taken as defaults.
 
 ```html
     <!-- Include CSS -->
@@ -83,7 +84,7 @@ There is no need to specify a `type` when you include CSS and JavaScript since `
 
 ### Practicality over purity
 
-Use semantic html, but not at the cost of pragmatism. Try to use the least amount of code with the fewest intricacies when possible.
+Use semantic html, but be pragmatic. Prefer the option that gives the least amount of code with the fewest intricacies.
 
 ```html
     <!-- Good -->
@@ -95,12 +96,11 @@ Use semantic html, but not at the cost of pragmatism. Try to use the least amoun
 
 ### Boolean attributes
 
-A boolean attribute is one that does not need to have declared value. XHTML did require a value, but HTML5 does not.
+A boolean attribute is one that does not need to have a declared value. XHTML did require a value, but HTML5 does not.
 
 > The presence of a boolean attribute on an element represents true, and the absence of the attribute represents false.
 
-
-In short, **don’t add a value**.
+Basically, **don’t add a value**.
 
 **Good**
 
@@ -129,7 +129,7 @@ In short, **don’t add a value**.
 
 ### Minimise markup
 
-When possible, avoid having unnecessary parent elements. 
+Avoid unnecessary parent elements. 
 
 ```html
     <!-- Bad -->
@@ -147,7 +147,7 @@ When possible, avoid having unnecessary parent elements.
 
 ### Editor preferences
 
-Some good settings for your code editor, which help to avoid common code inconsistencies and difficult merges/diffs:
+Settings for your code editor to avoid inconsistencies and messy merges/diffs:
 
 *   Use double-spaced soft-tabs.
 *   Trim trailing white space on save.
@@ -160,18 +160,17 @@ CSS
 
 ### Syntax
 
-*   Keep individual selectors to a single line.
-*   Include a space before the opening bracket of a blocks for easier legibility.
-*   Place closing brackets of a blocks on a new line.
-*   Include a space after `:` for each declaration.
-*   Each declaration should appear on its own line.
-*   End all declarations with a semi-colon. Including the last.
-*   Use space separated values for colour properties (`color: rgb(0 0 0 / .5)`). 
+*  Each selector on its own line.
+*   Add a space before the opening bracket of blocks.
+*   Closing bracket of a block goes on a new line.
+*   Include a space after `:`.
+*   Each declaration on its own line.
+*   End all declarations with a semi-colon. 
 *   Don’t use a leading zero (`.5` instead of `0.5` and `-.5px` instead of `-0.5px`).
 *   Lowercase all hex values, `#fff`. Lowercase is easier to read when scanning.
-*   Use shorthand hex values when possible, `#fff` instead of `#ffffff`.
-*   Use quotes on attribute values in selectors, `input[type="text"]
-*   Avoid using units for zero values, `margin: 0;` instead of `margin: 0px;`.
+*   Use shorthand hex values, `#fff` instead of `#ffffff`.
+*   Use quotes on attribute values, `input[type="text"]
+*   Avoid using units for zero, `margin: 0;` instead of `margin: 0px;`.
 
 
 ```css
@@ -198,7 +197,7 @@ CSS
 
 ### Declaration order
 
-Property declarations should be grouped together using the following order:
+Property declarations should be grouped together with the this order:
 
 1.  Positioning
 2.  Box model
@@ -206,7 +205,7 @@ Property declarations should be grouped together using the following order:
 4.  Visual
 5.  Misc
 
-Positioning is first as it can remove an element from the document flow and override any box model related styles. 
+Positioning first as it can remove an element from the document flow and override any box model related styles. 
 
 Whether it’s flex, float, grid, or table, then follows as it determines a component’s dimensions, placement, and alignment. 
 
@@ -253,7 +252,7 @@ Logical properties are the alternatives to directional and dimensonal properties
 
 By default, block applies to the vertical direction (top and bottom) while inline refers to the horizontal direction (right and left). 
 
-Not every language flows left-ro-right like English, so the writing mode should be flexible. Using logical properties makes it easier to support languages that can be written both horizontally or vertically (like Chinese, Japanese, and Korean). They’re also shorter and simpler to write.
+Not every language flows left-ro-right like English, so the writing mode should be flexible. Using logical properties makes it easier to support these languages.
 
 ```css
     // Without logical properties
@@ -275,7 +274,7 @@ Not every language flows left-ro-right like English, so the writing mode should 
 
 ### Colors
 
-`rgba()` and `hsla()` are aliases for `rgb()` and `hsl()`, so you can modify alpha values in `rgb()` and `hsl()`. You can also now use a  space-separated syntax for color values.
+Use `rgba()` and `hsla()` instead for `rgb()` and `hsl()`.
 
 ```css
     .element {
@@ -286,10 +285,10 @@ Not every language flows left-ro-right like English, so the writing mode should 
 
 ### Avoid using `@import`s
 
-For including CSS, `@import`s are slower than `<link>`s, they also add additional page requests. Avoid them and instead go for an alternate approach:
+`@import`s are slower than `<link>`s, they add additional page requests. Avoid them and instead use:
 
-*   Use multiple `<link>`elements
-*   Use a preprocessor to compile all your CSS like [Sass](https://sass-lang.com/) or [Less](https://lesscss.org/) into a single file
+*   Multiple `<link>`elements
+*   A preprocessor to compile all your CSS like [Sass](https://sass-lang.com/) or [Less](https://lesscss.org/) into a single file
 *   Concatenate your CSS files with features provided in various tooling libraries.
 
 ```css
@@ -306,9 +305,7 @@ For including CSS, `@import`s are slower than `<link>`s, they also add additiona
 
 ### Media queries
 
-Put your media queries as close to their related rule sets as possible. 
-
-Don’t include them together in a separate stylesheet or at the end of the file. Doing this makes it easier for people to miss them in the future. Here’s a better solution.
+Put your media queries close to their related rule sets. 
 
 ```css
     .element { ... }
@@ -324,7 +321,7 @@ Don’t include them together in a separate stylesheet or at the end of the file
 
 ### Using Single rule declarations
 
-When a rule set has **only one declaration**, you should remove any line breaks for better readability and easier editing. 
+When a rule has **only one declaration**, remove any line breaks for better readability and editing. 
 
 ```css
     // Single declarations on one line
@@ -332,7 +329,6 @@ When a rule set has **only one declaration**, you should remove any line breaks 
     .span2 { width: 140px; }
     .span3 { width: 220px; }
 ```
-
 ```css
     // Multiple declarations, one per line
     .sprite {
@@ -348,7 +344,7 @@ When a rule set has **only one declaration**, you should remove any line breaks 
 
 ### Shorthand notations
 
-It is best to limit shorthand declarations to those instances where you need to explicitly set all the available values. Some commonly overused shorthand properties include:
+Limit shorthand declarations to those cases where you need to set all the available values. 
 
 *   `padding`
 *   `margin`
@@ -357,21 +353,20 @@ It is best to limit shorthand declarations to those instances where you need to 
 *   `border`
 *   `border-radius`
 
-When we don’t need to set all the values of a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. A `0` value implies an override of either a browser default or previously specified value.
+Using shorthand properties can lead to more verbose code with unnecessary overrides and unpredictable side effects.
 
-Excessive use of shorthand properties leads to sloppier code with unnecessary overrides and unintended side effects.
-
-The Mozilla Developer Network has a great article on [shorthand properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties) for those unfamiliar with notation and behavior.
-
-    // Bad example
+```css
+    // Bad
     .element {
       margin: 0 0 10px;
       background: red;
       background: url("image.jpg");
       border-radius: 3px 3px 0 0;
     }
-    
-    // Good example
+```
+
+```css
+    // Good 
     .element {
       margin-bottom: 10px;
       background-color: red;
@@ -379,130 +374,133 @@ The Mozilla Developer Network has a great article on [shorthand properties](http
       border-top-left-radius: 3px;
       border-top-right-radius: 3px;
     }
-    
+```    
 
 ### Nesting in preprocessors
 
-Avoid unnecessary nesting in preprocessors whenever possible—keep it simple and avoid reverse nesting. Consider nesting only if you must scope styles to a parent and if there are multiple elements to be nested.
+Avoid nesting in preprocessors. Keep it simple.
 
-**Additional reading:**
-
-*   [Nesting in Sass and Less](https://markdotto.com/2015/07/20/css-nesting/)
-
-    // Without nesting
+```css
+    // Without nesting clear
     .table > thead > tr > th { … }
     .table > thead > tr > td { … }
-    
-    // With nesting
+```
+```css    
+    // With nesting confusing
     .table > thead > tr {
       > th { … }
       > td { … }
     }
-    
+````    
 
-### Operators in preprocessors
+### Using operators in preprocessors
 
-For improved readability, wrap all math operations in parentheses with a single space between values, variables, and operators.
+Wrap all operations in parentheses.
 
-    // Bad example
+```css
+    // Bad 
     .element {
       margin: 10px 0 @variable*2 10px;
     }
-    
-    // Good example
+```
+```css
+    // Good 
     .element {
       margin: 10px 0 (@variable * 2) 10px;
     }
-    
+```    
 
 ### Comments
 
-Code is written and maintained by people. Ensure your code is descriptive, well commented, and approachable by others. Great code comments convey context or purpose. Do not simply reiterate a component or class name. Use the `//` syntax when writing CSS with preprocessors. When shipping CSS to production, remove all comments.
+Code is written for people. It should be descriptive, well commented, and accessible to others. 
 
-Be sure to write in complete sentences for larger comments and succinct phrases for general notes.
+Good comments convey context and purpose. 
 
-    // Bad example
+
+```css
+    // Bad
     // Modal header
     .modal-header {
       ...
     }
-    
-    // Good example
+```
+
+```css
+    // Good
     // Wrapping element for .modal-title and .modal-close
     .modal-header {
       ...
     }
-    
+```    
 
 ### Class names
 
-*   Keep classes lowercase and use dashes (not underscores or camelCase). Dashes serve as natural breaks in related class (e.g., `.btn` and `.btn-danger`).
-*   Avoid excessive and arbitrary shorthand notation. `.btn` is useful for _button_, but `.s` doesn’t mean anything.
-*   Keep classes as short and succinct as possible.
-*   Use meaningful names; use structural or purposeful names over presentational.
-*   Prefix classes based on the closest parent or base class.
-*   Use `.js-*` classes to denote behavior (as opposed to style), but keep these classes out of your CSS.
+*   Use lowercase and dashes (not underscores or camelCase). Dashes provide natural divisions for readability (e.g., `.btn` and `.btn-danger`).
+*   Avoid shorthand. `.btn` is useful for _button_, but `.s` doesn’t mean anything.
+*   Use meaningful names; structural over presentational.
+*   Prefix classes based on the closest parent or base.
+*   Use `.js-*` classes to indicate behavior.
 
-It’s also useful to apply many of these same rules when creating custom properties and preprocessor variable names.
-
-    // Bad example
+```css
+    // Bad 
     .t { ... }
     .red { ... }
     .header { ... }
-    
-    // Good example
+```
+
+```css
+    // Good
     .tweet { ... }
     .important { ... }
     .tweet-header { ... }
-    
+```    
 
 ### Selectors
 
-*   Use classes over generic element tags for more explicit and reliable styling that isn’t dependent on your markup.
-*   Avoid using several attribute selectors (e.g., `[class^="..."]`) on commonly occuring components. Browser performance is known to be impacted by these.
-*   Keep selectors short and strive to limit the number of elements in each selector to three.
-*   Scope classes to the closest parent `only` when necessary (e.g., when not using prefixed classes).
+*   Choose classes over element tags for more explicit and reliable styling that isn’t dependent on your markup.
+*   Avoid using many selectors (e.g., `[class^="..."]`) on commonly occuring components. Browser performance is impacted.
+*   Keep selectors short and limit the number of elements in each selector to three.
+*   Scope classes to the closest parent `only` when necessary.
 
-**Additional reading:**
-
-*   [Scope CSS classes with prefixes](https://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/)
-*   [Stop the cascade](https://markdotto.com/2012/03/02/stop-the-cascade/)
-
-    // Bad example
+```css
+    // Bad
     span { ... }
     .page-container #stream .stream-item .tweet .tweet-header .username { ... }
     .avatar { ... }
-    
-    // Good example
+```
+
+```css
+    // Good
     .avatar { ... }
     .tweet-header .username { ... }
     .tweet .avatar { ... }
-    
+```    
 
 ### Child and descendant selectors
 
-When necessary, it may be helpful to use [the child combinator (`>`)](https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator) to limit the cascade of some styles in elements like `<table>`s that are often recursively nested. Use it to limit styles to the immediate children elements of a parent element to avoid unnecessary overrides later on.
+Use the child combinator `>` to limit the cascade of styles used with elements like `<table>`s that can be deeply nested. 
 
+```css
     .custom-table > tbody > tr > td,
     .custom-table > tbody > tr > th {
       /* ... */
     }
-    
+```    
 
-### Organization
+### Code Organization
 
-*   Organize sections of code by component.
-*   Develop a consistent commenting hierarchy.
-*   Use consistent white space to your advantage when separating sections of code for scanning larger documents.
-*   When using multiple CSS files, break them down by component instead of page. Pages can be rearranged and components moved.
+*   Split your code by component.
+*   When using multiple CSS files, split them by component instead of by page..
 
+```css
     //
     // Component section heading
     //
     
     .element { ... }
+  ```  
     
-    
+  ```css
     //
     // Component section heading
     //
@@ -513,12 +511,4 @@ When necessary, it may be helpful to use [the child combinator (`>`)](https://de
     
     // Contextual sub-component or modifer
     .element-heading { ... }
-    
-
-Open sourced by [@mdo](https://twitter.com/mdo) under MIT license. Copyright 2022.
-
-*   
-*   
-
-*   [Follow @mdo](https://twitter.com/mdo)
-*   [Tweet](https://twitter.com/share)
+```    

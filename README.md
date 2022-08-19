@@ -2,78 +2,6 @@
 
 Guidelines for writing flexible, consistent and maintainable HTML and CSS.
 
-Table of contents
------------------
-
-### [HTML](#html)
-
-- [Code Standards Guide](#code-standards-guide)
-  - [Table of contents](#table-of-contents)
-    - [HTML](#html)
-    - [CSS](#css)
-  - [HTML](#html-1)
-    - [Syntax](#syntax)
-    - [doctype](#doctype)
-    - [Language attribute](#language-attribute)
-    - [IE compatibility mode](#ie-compatibility-mode)
-    - [Character encoding](#character-encoding)
-    - [CSS and JavaScript includes](#css-and-javascript-includes)
-    - [Practicality over purity](#practicality-over-purity)
-    - [Boolean attributes](#boolean-attributes)
-    - [Minimise markup](#minimise-markup)
-    - [Editor preferences](#editor-preferences)
-  - [CSS](#css-1)
-    - [Syntax](#syntax-1)
-    - [Declaration order](#declaration-order)
-    - [Logical properties](#logical-properties)
-    - [Colors](#colors)
-    - [Avoid `@import`s](#avoid-imports)
-    - [Media query placement](#media-query-placement)
-    - [Single declarations](#single-declarations)
-    - [Shorthand notation](#shorthand-notation)
-    - [Nesting in preprocessors](#nesting-in-preprocessors)
-    - [Operators in preprocessors](#operators-in-preprocessors)
-    - [Comments](#comments)
-    - [Class names](#class-names)
-    - [Selectors](#selectors)
-    - [Child and descendant selectors](#child-and-descendant-selectors)
-    - [Organization](#organization)
-
-### [CSS](#css)
-
-- [Code Standards Guide](#code-standards-guide)
-  - [Table of contents](#table-of-contents)
-    - [HTML](#html)
-    - [CSS](#css)
-  - [HTML](#html-1)
-    - [Syntax](#syntax)
-    - [doctype](#doctype)
-    - [Language attribute](#language-attribute)
-    - [IE compatibility mode](#ie-compatibility-mode)
-    - [Character encoding](#character-encoding)
-    - [CSS and JavaScript includes](#css-and-javascript-includes)
-    - [Practicality over purity](#practicality-over-purity)
-    - [Boolean attributes](#boolean-attributes)
-    - [Minimise markup](#minimise-markup)
-    - [Editor preferences](#editor-preferences)
-  - [CSS](#css-1)
-    - [Syntax](#syntax-1)
-    - [Declaration order](#declaration-order)
-    - [Logical properties](#logical-properties)
-    - [Colors](#colors)
-    - [Avoid `@import`s](#avoid-imports)
-    - [Media query placement](#media-query-placement)
-    - [Single declarations](#single-declarations)
-    - [Shorthand notation](#shorthand-notation)
-    - [Nesting in preprocessors](#nesting-in-preprocessors)
-    - [Operators in preprocessors](#operators-in-preprocessors)
-    - [Comments](#comments)
-    - [Class names](#class-names)
-    - [Selectors](#selectors)
-    - [Child and descendant selectors](#child-and-descendant-selectors)
-    - [Organization](#organization)
-
-
 ## HTML
 
 ### Syntax
@@ -347,44 +275,42 @@ Not every language flows left-ro-right like English, so the writing mode should 
 
 ### Colors
 
-With the support of [CSS Color Levels 4](https://www.w3.org/TR/css-color-4/) [in all major browsers](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb#space-separated_values), `rgba()` and `hsla()` are now aliases for `rgb()` and `hsl()`, meaning you can modify alpha values in `rgb()` and `hsl()`. Along with this comes support for new space-separated syntax for color values. For compability with future CSS color functions, use this new syntax.
+`rgba()` and `hsla()` are aliases for `rgb()` and `hsl()`, so you can modify alpha values in `rgb()` and `hsl()`. You can also now use a  space-separated syntax for color values.
 
-Regardless of your color values and syntax, always ensure your color choices meet [WCAG minimum contrast ratios](https://webaim.org/articles/contrast/) (4.5:1 for 16px and smaller, 3:1 for larger).
-
-**Additional reading:**
-
-*   [Smashing Magazine - A Guide To Modern CSS Colors](https://www.smashingmagazine.com/2021/11/guide-modern-css-colors/)
-*   [`rgb()` - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb)
-
+```css
     .element {
       color: rgb(255 255 255 / .65);
       background-color: rgb(0 0 0 / .95);
     }
-    
+```    
 
-### Avoid `@import`s
+### Avoid using `@import`s
 
-Compared to `<link>`s, `@import` is slower, adds extra page requests, and can cause other unforeseen problems. Avoid them and instead opt for an alternate approach:
+For including CSS, `@import`s are slower than `<link>`s, they also add additional page requests. Avoid them and instead go for an alternate approach:
 
 *   Use multiple `<link>`elements
-*   Compile your CSS with a preprocessor like [Sass](https://sass-lang.com/) or [Less](https://lesscss.org/) into a single file
-*   Concatenate your CSS files with features provided in Rails, Jekyll, and other environments
+*   Use a preprocessor to compile all your CSS like [Sass](https://sass-lang.com/) or [Less](https://lesscss.org/) into a single file
+*   Concatenate your CSS files with features provided in various tooling libraries.
 
-For more information, [read this article by Steve Souders](https://www.stevesouders.com/blog/2009/04/09/dont-use-import/).
-
+```css
     <!-- Use link elements -->
     <link rel="stylesheet" href="core.css">
-    
+```
+
+```css
     <!-- Avoid @imports -->
     <style>
       @import url("more.css");
     </style>
-    
+```    
 
-### Media query placement
+### Media queries
 
-Place media queries as close to their relevant rule sets whenever possible. Don’t bundle them all in a separate stylesheet or at the end of the document. Doing so only makes it easier for folks to miss them in the future. Here’s a typical setup.
+Put your media queries as close to their related rule sets as possible. 
 
+Don’t include them together in a separate stylesheet or at the end of the file. Doing this makes it easier for people to miss them in the future. Here’s a better solution.
+
+```css
     .element { ... }
     .element-avatar { ... }
     .element-selected { ... }
@@ -394,19 +320,20 @@ Place media queries as close to their relevant rule sets whenever possible. Don�
       .element-avatar { ... }
       .element-selected { ... }
     }
-    
+```    
 
-### Single declarations
+### Using Single rule declarations
 
-In instances where a rule set includes **only one declaration**, consider removing line breaks for readability and faster editing. Any rule set with multiple declarations should be split to separate lines.
+When a rule set has **only one declaration**, you should remove any line breaks for better readability and easier editing. 
 
-The key factor here is error detection—e.g., a CSS validator stating you have a syntax error on Line 183. With a single declaration, there’s no missing it. With multiple declarations, separate lines is a must for your sanity.
-
+```css
     // Single declarations on one line
     .span1 { width: 60px; }
     .span2 { width: 140px; }
     .span3 { width: 220px; }
-    
+```
+
+```css
     // Multiple declarations, one per line
     .sprite {
       display: inline-block;
@@ -417,11 +344,11 @@ The key factor here is error detection—e.g., a CSS validator stating you have 
     .icon           { background-position: 0 0; }
     .icon-home      { background-position: 0 -20px; }
     .icon-account   { background-position: 0 -40px; }
-    
+```    
 
-### Shorthand notation
+### Shorthand notations
 
-Limit shorthand declaration usage to instances where you must explicitly set all available values. Frequently overused shorthand properties include:
+It is best to limit shorthand declarations to those instances where you need to explicitly set all the available values. Some commonly overused shorthand properties include:
 
 *   `padding`
 *   `margin`
@@ -430,7 +357,7 @@ Limit shorthand declaration usage to instances where you must explicitly set all
 *   `border`
 *   `border-radius`
 
-Usually we don’t need to set all the values a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. A `0` value implies an override of either a browser default or previously specified value.
+When we don’t need to set all the values of a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. A `0` value implies an override of either a browser default or previously specified value.
 
 Excessive use of shorthand properties leads to sloppier code with unnecessary overrides and unintended side effects.
 

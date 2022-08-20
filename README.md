@@ -1,6 +1,6 @@
-# CSS and HTML Guide for Lazy Developers
+# Simple CSS and HTML Guide
 
-These guidelines are for writing flexible, consistent and maintainable HTML and CSS as a lazy developer.
+These guidelines are for writing flexible, consistent and maintainable HTML and CSS.
 
 ## HTML
 
